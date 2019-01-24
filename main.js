@@ -43,6 +43,10 @@ client.on('guildMemberAdd', member => {
 
 client.on("message", msg => {
 	try {
+		// If user has no roles, give them rookie role.
+		if (msg.member.roles.length === 0) {
+			msg.member.addRole('rookie'); // rookie is probably wrong here, but it should look like this.
+		};
 		if (msg.isMentioned(client.user)) {
 			//Pre-edit message
 			msg.contentArray = msg.content.split(" ").splice(1, msg.content.length);
